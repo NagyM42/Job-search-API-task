@@ -1,7 +1,6 @@
 package com.nagym.jobsearchapi.dtos;
 
 import com.nagym.jobsearchapi.models.ClientModel;
-import com.nagym.jobsearchapi.models.JobModel;
 
 public class ClientResponseDTO {
 

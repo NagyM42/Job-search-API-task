@@ -23,7 +23,7 @@ public class ClientModel {
   private String clientEmail;
 
   @OneToMany(mappedBy = "ownerClient")
-  private List<JobModel> jobs;
+  private List<PositionModel> jobs;
 
   public ClientModel() {
   }

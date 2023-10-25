@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class JobModel {
+public class PositionModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,10 +25,10 @@ public class JobModel {
   @ManyToOne
   private ClientModel ownerClient;
 
-  public JobModel() {
+  public PositionModel() {
   }
 
-  public JobModel(Long id, String jobName, String jobGeographicalPosition, String jobURL) {
+  public PositionModel(Long id, String jobName, String jobGeographicalPosition, String jobURL) {
     this.id = id;
     this.jobName = jobName;
     this.jobGeographicalPosition = jobGeographicalPosition;
