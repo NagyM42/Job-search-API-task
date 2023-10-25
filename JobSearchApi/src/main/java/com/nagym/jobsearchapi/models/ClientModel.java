@@ -1,5 +1,6 @@
 package com.nagym.jobsearchapi.models;
 
+import com.nagym.jobsearchapi.dtos.ClientRegisterDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,13 +8,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 public class ClientModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  private Long id;
+  private UUID id;
 
   @Column(nullable = false)
   private String clientName;
@@ -26,17 +28,22 @@ public class ClientModel {
   public ClientModel() {
   }
 
-  public ClientModel(Long id, String clientName, String clientEmail) {
+  public ClientModel(UUID id, String clientName, String clientEmail) {
     this.id = id;
     this.clientName = clientName;
     this.clientEmail = clientEmail;
   }
 
-  public Long getId() {
+  public ClientModel(ClientRegisterDTO registerDTO) {
+    this.clientName = registerDTO.getClientName();
+    this.clientEmail = registerDTO.getEmail();
+  }
+
+  public UUID getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(UUID id) {
     this.id = id;
   }
 
