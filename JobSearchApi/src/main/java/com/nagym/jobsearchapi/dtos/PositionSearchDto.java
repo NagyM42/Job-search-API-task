@@ -6,7 +6,6 @@ public class PositionSearchDto {
 
   private String positionDescription;
   private String positionLocation;
-
   private UUID uuid;
 
   public PositionSearchDto() {

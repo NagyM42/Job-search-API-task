@@ -1,9 +1,14 @@
 package com.nagym.jobsearchapi.services;
 
+import com.nagym.jobsearchapi.dtos.PositionResponseDto;
+import com.nagym.jobsearchapi.dtos.PositionSearchResponseDto;
 import com.nagym.jobsearchapi.models.ClientModel;
 import com.nagym.jobsearchapi.models.PositionModel;
 import com.nagym.jobsearchapi.repositories.PositionRepository;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,14 +30,33 @@ public class PositionServiceImpl implements PositionService {
   }
 
 
-  public PositionModel savePositionWithClient(PositionModel positionModel, ClientModel clientModel) {
+  public PositionModel savePositionWithClient(PositionModel positionModel,
+      ClientModel clientModel) {
     PositionModel positionWithId = savePosition(positionModel);
     positionWithId.setOwnerClient(clientModel);
     return savePosition(positionWithId);
   }
 
-  public Optional<PositionModel> searchPositions(String positionName){
-    positionRepository
+  private Optional<List<PositionModel>> searchPositions(String positionName,
+      String positionLocation) {
+    return positionRepository.findAllByPositionGeographicalPositionContainingAndPositionNameContaining(
+        positionLocation, positionName);
   }
 
+  private boolean positionFound(String positionName, String positionLocation) {
+    return positionRepository.existsByPositionGeographicalPositionContainingAndPositionNameContaining(
+        positionLocation, positionName);
+  }
+
+  public List<PositionSearchResponseDto> summarizePositionsFromDatabase(String positionName,
+      String positionLocation) {
+
+    if (positionFound(positionName, positionLocation)) {
+      return searchPositions(positionName, positionLocation).get().stream().map(
+          PositionSearchResponseDto::new).collect(
+          Collectors.toList());
+    } else {
+      return new ArrayList<>();
+    }
+  }
 }
