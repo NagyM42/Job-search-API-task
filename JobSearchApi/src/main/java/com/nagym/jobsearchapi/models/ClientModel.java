@@ -62,4 +62,12 @@ public class ClientModel {
   public void setClientEmail(String clientEmail) {
     this.clientEmail = clientEmail;
   }
+
+  public List<PositionModel> getJobs() {
+    return jobs;
+  }
+
+  public void setJobs(List<PositionModel> jobs) {
+    this.jobs = jobs;
+  }
 }

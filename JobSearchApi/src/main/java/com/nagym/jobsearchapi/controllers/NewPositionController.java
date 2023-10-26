@@ -21,6 +21,7 @@ public class NewPositionController {
   private PositionServiceImpl positionService;
   private ClientServiceImpl clientService;
 
+  @Autowired
   public NewPositionController(ValidatorService validatorService,
       PositionServiceImpl positionService,
       ClientServiceImpl clientService) {
@@ -29,11 +30,9 @@ public class NewPositionController {
     this.clientService = clientService;
   }
 
-  @Autowired
-
-
   @PostMapping({("/positions")})
-  public ResponseEntity<PositionResponseDto> positionRegistration(@RequestBody PositionRegisterDto positionRegisterDto){
+  public ResponseEntity<PositionResponseDto> positionRegistration(
+      @RequestBody PositionRegisterDto positionRegisterDto) {
 
     validatorService.apiKeyValidation(positionRegisterDto.getUuid());
     validatorService.positionNameLengthValidation(positionRegisterDto.getPositionDescription());
@@ -41,7 +40,7 @@ public class NewPositionController {
 
     PositionModel position = new PositionModel(positionRegisterDto);
     ClientModel client = clientService.getClientById(positionRegisterDto.getUuid());
-    positionService.savePositionWithClient(position,client);
+    position = positionService.savePositionWithClient(position, client);
 
     return ResponseEntity.ok(new PositionResponseDto(position.getPositionURL()));
   }

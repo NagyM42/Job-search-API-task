@@ -1,12 +1,12 @@
 package com.nagym.jobsearchapi.services;
 
+import com.nagym.jobsearchapi.exceptions.ClientEmailNotUniqueException;
 import com.nagym.jobsearchapi.exceptions.InvalidApiKeyException;
 import com.nagym.jobsearchapi.exceptions.InvalidClientEmailException;
 import com.nagym.jobsearchapi.exceptions.InvalidClientNameLengthException;
 import com.nagym.jobsearchapi.exceptions.InvalidPositionLocationLengthException;
 import com.nagym.jobsearchapi.exceptions.InvalidPositionNameLegthException;
 import com.nagym.jobsearchapi.repositories.ClientRepository;
-import java.util.SimpleTimeZone;
 import java.util.UUID;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +42,19 @@ public class ValidatorService {
     }
   }
 
-  public void clientEmailValidation(String clientEmail) throws InvalidClientEmailException {
+  public void clientEmailFormatValidation(String clientEmail) throws InvalidClientEmailException {
 
     String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
         + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
     if (!Pattern.compile(regexPattern).matcher(clientEmail).matches()){
       throw new InvalidClientEmailException();
+    }
+  }
+
+  public void clientEmailUniqenessValidation(String clientEmail) throws ClientEmailNotUniqueException {
+    if (clientRepository.existsByClientEmail(clientEmail)){
+      throw new ClientEmailNotUniqueException();
     }
   }
 

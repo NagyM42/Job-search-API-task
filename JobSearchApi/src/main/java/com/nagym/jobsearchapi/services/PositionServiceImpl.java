@@ -24,10 +24,10 @@ public class PositionServiceImpl implements PositionService {
   }
 
 
-  public void savePositionWithClient(PositionModel positionModel, ClientModel clientModel) {
+  public PositionModel savePositionWithClient(PositionModel positionModel, ClientModel clientModel) {
 
     PositionModel positionWithId = savePosition(positionModel);
     positionWithId.setOwnerClient(clientModel);
-    savePosition(positionWithId);
+    return savePosition(positionWithId);
   }
 }

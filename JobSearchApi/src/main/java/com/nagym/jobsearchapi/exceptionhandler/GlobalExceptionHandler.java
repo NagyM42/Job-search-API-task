@@ -1,6 +1,7 @@
 package com.nagym.jobsearchapi.exceptionhandler;
 
 import com.nagym.jobsearchapi.dtos.ErrorResponseDto;
+import com.nagym.jobsearchapi.exceptions.ClientEmailNotUniqueException;
 import com.nagym.jobsearchapi.exceptions.InvalidClientEmailException;
 import com.nagym.jobsearchapi.exceptions.InvalidClientNameLengthException;
 import com.nagym.jobsearchapi.exceptions.InvalidPositionLocationLengthException;
@@ -43,6 +44,14 @@ public class GlobalExceptionHandler {
   public ErrorResponseDto handlePositionLocationNameLengthException(Exception exception){
 
     String message = "Error: Position's Location name exceeds 50 characters!";
+    return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
+  }
+
+  @ExceptionHandler({ClientEmailNotUniqueException.class})
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ErrorResponseDto handleClientNameNotUniqueException(Exception exception){
+
+    String message = "Error: Client name is already taken!";
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
   }
 }
