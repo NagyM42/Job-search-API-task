@@ -2,9 +2,10 @@ package com.nagym.jobsearchapi.exceptionhandler;
 
 import com.nagym.jobsearchapi.dtos.ErrorResponseDto;
 import com.nagym.jobsearchapi.exceptions.InvalidClientEmailException;
-import com.nagym.jobsearchapi.exceptions.InvalidClientNameException;
+import com.nagym.jobsearchapi.exceptions.InvalidClientNameLengthException;
+import com.nagym.jobsearchapi.exceptions.InvalidPositionLocationLengthException;
+import com.nagym.jobsearchapi.exceptions.InvalidPositionNameLegthException;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -12,9 +13,36 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-  @ExceptionHandler({InvalidClientNameException.class, InvalidClientEmailException.class})
+  @ExceptionHandler({InvalidClientEmailException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public ErrorResponseDto handleClientErrorException(Exception exception){
-    return new ErrorResponseDto(HttpStatus.BAD_REQUEST, exception.getMessage());
+  public ErrorResponseDto handleClientEmailException(Exception exception){
+
+    String message = "Error: Invalid e-mail address format.";
+    return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
+  }
+
+  @ExceptionHandler({InvalidClientNameLengthException.class})
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ErrorResponseDto handleClientNameException(Exception exception){
+
+    String message = "Error: Client name exceeds 50 characters!";
+    return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
+  }
+
+  @ExceptionHandler({InvalidPositionNameLegthException.class})
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ErrorResponseDto handlePositionNameLengthException(Exception exception){
+
+    String message = "Error: Position name exceeds 50 characters!";
+    return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
+  }
+
+
+  @ExceptionHandler({InvalidPositionLocationLengthException.class})
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ErrorResponseDto handlePositionLocationNameLengthException(Exception exception){
+
+    String message = "Error: Position's Location name exceeds 50 characters!";
+    return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
   }
 }

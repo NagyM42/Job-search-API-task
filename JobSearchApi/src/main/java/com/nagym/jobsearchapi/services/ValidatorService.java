@@ -2,8 +2,11 @@ package com.nagym.jobsearchapi.services;
 
 import com.nagym.jobsearchapi.exceptions.InvalidApiKeyException;
 import com.nagym.jobsearchapi.exceptions.InvalidClientEmailException;
-import com.nagym.jobsearchapi.exceptions.InvalidLengthException;
+import com.nagym.jobsearchapi.exceptions.InvalidClientNameLengthException;
+import com.nagym.jobsearchapi.exceptions.InvalidPositionLocationLengthException;
+import com.nagym.jobsearchapi.exceptions.InvalidPositionNameLegthException;
 import com.nagym.jobsearchapi.repositories.ClientRepository;
+import java.util.SimpleTimeZone;
 import java.util.UUID;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +22,23 @@ public class ValidatorService {
     this.clientRepository = clientRepository;
   }
 
-  public void clientNameValidation(String clientName) throws InvalidLengthException {
+  public void clientNameValidation(String clientName) throws InvalidClientNameLengthException {
 
     if(clientName.length() > 100){
-      throw new InvalidLengthException("Invalid name: Client name extends 100 charcters!");
+      throw new InvalidClientNameLengthException("Invalid name: Client name extends 100 characters!");
     }
   }
 
-  public void lengthValidation(String inputString, int maxLength,String fieldName) throws InvalidLengthException {
+  public void positionNameLengthValidation(String postName) throws InvalidPositionNameLegthException {
 
-    if(inputString.length() > maxLength){
-      throw new InvalidLengthException("Invalid " + fieldName + ": paramter exceeds " + maxLength + " characters!" );
+    if(postName.length() > 50){
+      throw new InvalidPositionNameLegthException();
+    }
+  }
+
+  public void positionLocationLengthValidation(String postLocation) throws InvalidPositionLocationLengthException{
+    if(postLocation.length() > 50){
+      throw new InvalidPositionLocationLengthException();
     }
   }
 
@@ -39,7 +48,7 @@ public class ValidatorService {
         + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
     if (!Pattern.compile(regexPattern).matcher(clientEmail).matches()){
-      throw new InvalidClientEmailException("Error: Invalid e-mail address format.");
+      throw new InvalidClientEmailException();
     }
   }
 
