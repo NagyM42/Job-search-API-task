@@ -6,6 +6,7 @@ import com.nagym.jobsearchapi.exceptions.InvalidClientEmailException;
 import com.nagym.jobsearchapi.exceptions.InvalidClientNameLengthException;
 import com.nagym.jobsearchapi.exceptions.InvalidPositionLocationLengthException;
 import com.nagym.jobsearchapi.exceptions.InvalidPositionNameLegthException;
+import com.nagym.jobsearchapi.exceptions.PositionNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -54,4 +55,14 @@ public class GlobalExceptionHandler {
     String message = "Error: Client name is already taken!";
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
   }
+
+  @ExceptionHandler({PositionNotFoundException.class})
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ErrorResponseDto handleNoPositionsFoundException(Exception exception){
+
+    String message = "Error: there are no positions with the given parameters";
+    return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
+  }
+
+
 }

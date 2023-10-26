@@ -2,6 +2,7 @@ package com.nagym.jobsearchapi.services;
 
 import com.nagym.jobsearchapi.dtos.PositionResponseDto;
 import com.nagym.jobsearchapi.dtos.PositionSearchResponseDto;
+import com.nagym.jobsearchapi.exceptions.PositionNotFoundException;
 import com.nagym.jobsearchapi.models.ClientModel;
 import com.nagym.jobsearchapi.models.PositionModel;
 import com.nagym.jobsearchapi.repositories.PositionRepository;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -58,5 +60,13 @@ public class PositionServiceImpl implements PositionService {
     } else {
       return new ArrayList<>();
     }
+  }
+
+  public ResponseEntity<List<PositionSearchResponseDto>> responseCreator(List<PositionSearchResponseDto> input) throws PositionNotFoundException{
+
+    if(input.isEmpty()){
+      throw new PositionNotFoundException();
+    }
+    return ResponseEntity.ok(input);
   }
 }

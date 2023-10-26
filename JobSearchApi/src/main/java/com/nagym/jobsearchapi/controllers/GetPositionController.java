@@ -36,12 +36,11 @@ public class GetPositionController {
     validatorService.positionNameLengthValidation(positionSearchDto.getPositionDescription());
     validatorService.positionNameLengthValidation(positionSearchDto.getPositionLocation());
 
-    List<PositionSearchResponseDto> output = positionService.summarizePositionsFromDatabase(
+    List<PositionSearchResponseDto> listofPositionsInDataBase = positionService.summarizePositionsFromDatabase(
         positionSearchDto.getPositionDescription(),
         positionSearchDto.getPositionLocation());
 
-    return ResponseEntity.ok(output);
-
+    return positionService.responseCreator(listofPositionsInDataBase);
   }
 
 }
