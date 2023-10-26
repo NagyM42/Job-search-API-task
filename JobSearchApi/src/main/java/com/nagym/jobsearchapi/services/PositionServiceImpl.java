@@ -3,6 +3,7 @@ package com.nagym.jobsearchapi.services;
 import com.nagym.jobsearchapi.models.ClientModel;
 import com.nagym.jobsearchapi.models.PositionModel;
 import com.nagym.jobsearchapi.repositories.PositionRepository;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,13 @@ public class PositionServiceImpl implements PositionService {
 
 
   public PositionModel savePositionWithClient(PositionModel positionModel, ClientModel clientModel) {
-
     PositionModel positionWithId = savePosition(positionModel);
     positionWithId.setOwnerClient(clientModel);
     return savePosition(positionWithId);
   }
+
+  public Optional<PositionModel> searchPositions(String positionName){
+    positionRepository
+  }
+
 }

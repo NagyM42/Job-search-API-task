@@ -1,0 +1,44 @@
+package com.nagym.jobsearchapi.dtos;
+
+import java.util.UUID;
+
+public class PositionSearchDto {
+
+  private String positionDescription;
+  private String positionLocation;
+
+  private UUID uuid;
+
+  public PositionSearchDto() {
+  }
+
+  public PositionSearchDto(String positionDescription, String positionLocation, UUID uuid) {
+    this.positionDescription = positionDescription;
+    this.positionLocation = positionLocation;
+    this.uuid = uuid;
+  }
+
+  public String getPositionDescription() {
+    return positionDescription;
+  }
+
+  public void setPositionDescription(String positionDescription) {
+    this.positionDescription = positionDescription;
+  }
+
+  public String getPositionLocation() {
+    return positionLocation;
+  }
+
+  public void setPositionLocation(String positionLocation) {
+    this.positionLocation = positionLocation;
+  }
+
+  public UUID getUuid() {
+    return uuid;
+  }
+
+  public void setUuid(UUID uuid) {
+    this.uuid = uuid;
+  }
+}
