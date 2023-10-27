@@ -1,7 +1,5 @@
 package com.nagym.jobsearchapi.controllers;
 
-import com.nagym.jobsearchapi.dtos.ClientRegisterDTO;
-import com.nagym.jobsearchapi.dtos.ClientResponseDTO;
 import com.nagym.jobsearchapi.dtos.PositionSearchDto;
 import com.nagym.jobsearchapi.dtos.PositionSearchResponseDto;
 import com.nagym.jobsearchapi.services.PositionServiceImpl;
@@ -10,7 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
