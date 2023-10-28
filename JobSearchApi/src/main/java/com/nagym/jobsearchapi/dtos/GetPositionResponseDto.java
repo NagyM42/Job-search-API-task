@@ -2,19 +2,22 @@ package com.nagym.jobsearchapi.dtos;
 
 import com.nagym.jobsearchapi.models.PositionModel;
 
-public class PositionSearchResponseDto {
+public class GetPositionResponseDto {
   private String positionName;
   private String positionLocation;
   private String positionURL;
 
-  public PositionSearchResponseDto(String positionName, String positionLocation,
+  public GetPositionResponseDto() {
+  }
+
+  public GetPositionResponseDto(String positionName, String positionLocation,
       String positionURL) {
     this.positionName = positionName;
     this.positionLocation = positionLocation;
     this.positionURL = positionURL;
   }
 
-  public PositionSearchResponseDto(PositionModel positionModel){
+  public GetPositionResponseDto(PositionModel positionModel){
     this.positionName = positionModel.getPositionName();
     this.positionLocation = positionModel.getPositionGeographicalPosition();
     this.positionURL = positionModel.getPositionURL();

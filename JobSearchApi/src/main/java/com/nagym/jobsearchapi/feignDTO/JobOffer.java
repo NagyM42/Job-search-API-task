@@ -26,24 +26,7 @@ public class JobOffer {
     public JobOffer() {
     }
 
-    public JobOffer(String contents, String name, String type, String publication_date,
-        String short_name, String model_type, Integer id, List<JobLocation> locations,
-        List<JobCategory> categories, List<JobLevel> levels, List<Object> tags, JobReference refs,
-        Company company) {
-        this.contents = contents;
-        this.name = name;
-        this.type = type;
-        this.publication_date = publication_date;
-        this.short_name = short_name;
-        this.model_type = model_type;
-        this.id = id;
-        this.locations = locations;
-        this.categories = categories;
-        this.levels = levels;
-        this.tags = tags;
-        this.refs = refs;
-        this.company = company;
-    }
+
 
     public String getContents() {
         return contents;

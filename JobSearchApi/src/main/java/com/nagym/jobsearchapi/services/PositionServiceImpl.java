@@ -1,7 +1,6 @@
 package com.nagym.jobsearchapi.services;
 
-import com.nagym.jobsearchapi.dtos.PositionResponseDto;
-import com.nagym.jobsearchapi.dtos.PositionSearchResponseDto;
+import com.nagym.jobsearchapi.dtos.GetPositionResponseDto;
 import com.nagym.jobsearchapi.exceptions.PositionNotFoundException;
 import com.nagym.jobsearchapi.models.ClientModel;
 import com.nagym.jobsearchapi.models.PositionModel;
@@ -50,19 +49,19 @@ public class PositionServiceImpl implements PositionService {
         positionLocation, positionName);
   }
 
-  public List<PositionSearchResponseDto> summarizePositionsFromDatabase(String positionName,
+  public List<GetPositionResponseDto> summarizePositionsFromDatabase(String positionName,
       String positionLocation) {
 
     if (positionFound(positionName, positionLocation)) {
       return searchPositions(positionName, positionLocation).get().stream().map(
-          PositionSearchResponseDto::new).collect(
+          GetPositionResponseDto::new).collect(
           Collectors.toList());
     } else {
       return new ArrayList<>();
     }
   }
 
-  public ResponseEntity<List<PositionSearchResponseDto>> responseCreator(List<PositionSearchResponseDto> input) throws PositionNotFoundException{
+  public ResponseEntity<List<GetPositionResponseDto>> responseCreator(List<GetPositionResponseDto> input) throws PositionNotFoundException{
 
     if(input.isEmpty()){
       throw new PositionNotFoundException();

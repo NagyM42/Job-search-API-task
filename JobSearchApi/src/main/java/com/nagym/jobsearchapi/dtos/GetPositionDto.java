@@ -2,16 +2,16 @@ package com.nagym.jobsearchapi.dtos;
 
 import java.util.UUID;
 
-public class PositionSearchDto {
+public class GetPositionDto {
 
   private String positionDescription;
   private String positionLocation;
   private UUID uuid;
 
-  public PositionSearchDto() {
+  public GetPositionDto() {
   }
 
-  public PositionSearchDto(String positionDescription, String positionLocation, UUID uuid) {
+  public GetPositionDto(String positionDescription, String positionLocation, UUID uuid) {
     this.positionDescription = positionDescription;
     this.positionLocation = positionLocation;
     this.uuid = uuid;

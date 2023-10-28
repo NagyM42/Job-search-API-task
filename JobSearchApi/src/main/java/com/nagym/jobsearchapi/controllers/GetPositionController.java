@@ -1,16 +1,13 @@
 package com.nagym.jobsearchapi.controllers;
 
-import com.nagym.jobsearchapi.dtos.PositionSearchDto;
-import com.nagym.jobsearchapi.dtos.PositionSearchResponseDto;
-import com.nagym.jobsearchapi.feignDTO.JobOffer;
+import com.nagym.jobsearchapi.dtos.GetPositionDto;
+import com.nagym.jobsearchapi.dtos.GetPositionResponseDto;
 import com.nagym.jobsearchapi.feignDTO.JobSearchCriteria;
 import com.nagym.jobsearchapi.feignDTO.Root;
 import com.nagym.jobsearchapi.services.JobService;
 import com.nagym.jobsearchapi.services.PositionServiceImpl;
 import com.nagym.jobsearchapi.services.ValidatorService;
-import java.sql.ResultSet;
 import java.util.List;
-import jdk.jfr.consumer.RecordingStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,16 +32,16 @@ public class GetPositionController {
   }
 
   @GetMapping({("/positions")})
-  public ResponseEntity<List<PositionSearchResponseDto>> positionSearch(
-      @RequestBody PositionSearchDto positionSearchDto) {
+  public ResponseEntity<List<GetPositionResponseDto>> positionSearch(
+      @RequestBody GetPositionDto getPositionDto) {
 
-    validatorService.apiKeyValidation(positionSearchDto.getUuid());
-    validatorService.positionNameLengthValidation(positionSearchDto.getPositionDescription());
-    validatorService.positionNameLengthValidation(positionSearchDto.getPositionLocation());
+    validatorService.apiKeyValidation(getPositionDto.getUuid());
+    validatorService.positionNameLengthValidation(getPositionDto.getPositionDescription());
+    validatorService.positionNameLengthValidation(getPositionDto.getPositionLocation());
 
-    List<PositionSearchResponseDto> listofPositionsInDataBase = positionService.summarizePositionsFromDatabase(
-        positionSearchDto.getPositionDescription(),
-        positionSearchDto.getPositionLocation());
+    List<GetPositionResponseDto> listofPositionsInDataBase = positionService.summarizePositionsFromDatabase(
+        getPositionDto.getPositionDescription(),
+        getPositionDto.getPositionLocation());
 
     return positionService.responseCreator(listofPositionsInDataBase);
   }
