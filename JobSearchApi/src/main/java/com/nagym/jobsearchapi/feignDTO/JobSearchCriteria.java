@@ -9,16 +9,15 @@ import lombok.NoArgsConstructor;
 public class JobSearchCriteria {
     private String categoryName;
     private String locationName;
-    private int page;
+    private final int page = 0;
 
 
     public JobSearchCriteria() {
     }
 
-    public JobSearchCriteria(String categoryName, String locationName, int page) {
+    public JobSearchCriteria(String categoryName, String locationName) {
         this.categoryName = categoryName;
         this.locationName = locationName;
-        this.page = page;
     }
 
     public String getLocationName() {
@@ -31,10 +30,6 @@ public class JobSearchCriteria {
 
     public int getPage() {
         return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
     }
 
     public String getCategoryName() {

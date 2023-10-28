@@ -27,4 +27,8 @@ public class JobService {
     public List<GetPositionFromMuse> extractPositionsFromMuse(Root root){
         return root.getResults().stream().map(GetPositionFromMuse::new).toList();
     }
+
+    public List<GetPositionFromMuse> getPositionsFromMuse(JobSearchCriteria criteria){
+        return extractPositionsFromMuse(getJobs(criteria));
+    }
 }

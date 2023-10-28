@@ -60,12 +60,4 @@ public class PositionServiceImpl implements PositionService {
       return new ArrayList<>();
     }
   }
-
-  public ResponseEntity<List<GetPositionResponseDto>> responseCreator(List<GetPositionResponseDto> input) throws PositionNotFoundException{
-
-    if(input.isEmpty()){
-      throw new PositionNotFoundException();
-    }
-    return ResponseEntity.ok(input);
-  }
 }

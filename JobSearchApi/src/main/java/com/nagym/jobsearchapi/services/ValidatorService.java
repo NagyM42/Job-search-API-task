@@ -52,7 +52,7 @@ public class ValidatorService {
     }
   }
 
-  public void clientEmailUniqenessValidation(String clientEmail) throws ClientEmailNotUniqueException {
+  public void clientEmailUniquenessValidation(String clientEmail) throws ClientEmailNotUniqueException {
     if (clientRepository.existsByClientEmail(clientEmail)){
       throw new ClientEmailNotUniqueException();
     }
