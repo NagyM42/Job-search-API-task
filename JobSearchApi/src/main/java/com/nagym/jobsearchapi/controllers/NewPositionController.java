@@ -39,6 +39,7 @@ public class NewPositionController {
     validatorService.positionLocationLengthValidation(positionRegisterDto.getPositionLocation());
 
     PositionModel position = new PositionModel(positionRegisterDto);
+
     ClientModel client = clientService.getClientById(positionRegisterDto.getUuid());
     position = positionService.savePositionWithClient(position, client);
 

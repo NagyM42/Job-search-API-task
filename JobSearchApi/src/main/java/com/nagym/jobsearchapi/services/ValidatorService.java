@@ -58,10 +58,10 @@ public class ValidatorService {
     }
   }
 
-  public void apiKeyValidation(UUID clientId){
+  public void apiKeyValidation(UUID clientId) throws InvalidApiKeyException{
 
     if(!clientRepository.existsById(clientId)){
-      throw new InvalidApiKeyException("Error: invalid API key provided!");
+      throw new InvalidApiKeyException();
     }
   }
 }

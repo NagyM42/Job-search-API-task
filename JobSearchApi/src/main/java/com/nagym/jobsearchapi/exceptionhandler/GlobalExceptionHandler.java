@@ -2,8 +2,10 @@ package com.nagym.jobsearchapi.exceptionhandler;
 
 import com.nagym.jobsearchapi.dtos.ErrorResponseDto;
 import com.nagym.jobsearchapi.exceptions.ClientEmailNotUniqueException;
+import com.nagym.jobsearchapi.exceptions.InvalidApiKeyException;
 import com.nagym.jobsearchapi.exceptions.InvalidClientEmailException;
 import com.nagym.jobsearchapi.exceptions.InvalidClientNameLengthException;
+import com.nagym.jobsearchapi.exceptions.InvalidPositionIdException;
 import com.nagym.jobsearchapi.exceptions.InvalidPositionLocationLengthException;
 import com.nagym.jobsearchapi.exceptions.InvalidPositionNameLegthException;
 import com.nagym.jobsearchapi.exceptions.PositionNotFoundException;
@@ -19,7 +21,7 @@ public class GlobalExceptionHandler {
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ErrorResponseDto handleClientEmailException(Exception exception){
 
-    String message = "Error: Invalid e-mail address format.";
+    String message = "Error: Invalid e-mail address format!";
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
   }
 
@@ -48,6 +50,14 @@ public class GlobalExceptionHandler {
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
   }
 
+  @ExceptionHandler({InvalidApiKeyException.class})
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ErrorResponseDto handleInvalidClientIDException(Exception exception){
+
+    String message = "Error: Invalid Client UUID!";
+    return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
+  }
+
   @ExceptionHandler({ClientEmailNotUniqueException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ErrorResponseDto handleClientNameNotUniqueException(Exception exception){
@@ -60,7 +70,15 @@ public class GlobalExceptionHandler {
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ErrorResponseDto handleNoPositionsFoundException(Exception exception){
 
-    String message = "Error: there are no positions with the given parameters";
+    String message = "Error: there are no positions with the given parameters!";
+    return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
+  }
+
+  @ExceptionHandler({InvalidPositionIdException.class})
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ErrorResponseDto handleNoPositionsFoundByIdException(Exception exception){
+
+    String message = "Error: there are no positions with the provided Id!";
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
   }
 

@@ -20,7 +20,7 @@ public class PositionModel {
   @Column(nullable = false)
   private String positionGeographicalPosition;
 
-  @Column(nullable = false)
+  @Column
   private String positionURL;
 
   @ManyToOne
@@ -38,7 +38,6 @@ public class PositionModel {
   public PositionModel(PositionRegisterDto positionRegisterDto){
     this.positionName = positionRegisterDto.getPositionDescription();
     this.positionGeographicalPosition = positionRegisterDto.getPositionLocation();
-    this.positionURL = positionRegisterDto.getJobURL();
   }
 
   public Long getId() {

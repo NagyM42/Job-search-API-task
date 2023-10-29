@@ -14,6 +14,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,18 +54,9 @@ PositionRetrieverService positionRetrieverService;
     return positionRetrieverService.responseCreator(listofPositionsInDataBase, listOfPositionsInMuse);
   }
 
-//  @GetMapping({("/positions1")})
-//  public Root positionSearch2() {
-//
-//    JobSearchCriteria jobSearchCriteria = new JobSearchCriteria("Product","London, United Kingdom",0);
-//
-//    Root result = jobService.getJobs(jobSearchCriteria);
-//    if(result == null){
-//      return new Root();
-//    }
-//
-//    return result;
-//  }
-
+  @GetMapping({"/positions/{id}"})
+  public GetPositionFromDatabaseDto getSinglePosition(@PathVariable(name = "id") Long id){
+   return new GetPositionFromDatabaseDto(positionService.findPositionFromDatabase(id));
+  }
 
 }
