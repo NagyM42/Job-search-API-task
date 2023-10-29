@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler({InvalidClientEmailException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public ErrorResponseDto handleClientEmailException(Exception exception){
+  public ErrorResponseDto handleClientEmailException(Exception exception) {
 
     String message = "Error: Invalid e-mail address format!";
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler({InvalidClientNameLengthException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public ErrorResponseDto handleClientNameException(Exception exception){
+  public ErrorResponseDto handleClientNameException(Exception exception) {
 
     String message = "Error: Client name exceeds 50 characters!";
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler({InvalidPositionNameLegthException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public ErrorResponseDto handlePositionNameLengthException(Exception exception){
+  public ErrorResponseDto handlePositionNameLengthException(Exception exception) {
 
     String message = "Error: Position name exceeds 50 characters!";
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
@@ -44,7 +44,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler({InvalidPositionLocationLengthException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public ErrorResponseDto handlePositionLocationNameLengthException(Exception exception){
+  public ErrorResponseDto handlePositionLocationNameLengthException(Exception exception) {
 
     String message = "Error: Position's Location name exceeds 50 characters!";
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler({InvalidApiKeyException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public ErrorResponseDto handleInvalidClientIDException(Exception exception){
+  public ErrorResponseDto handleInvalidClientIDException(Exception exception) {
 
     String message = "Error: Invalid Client UUID!";
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
@@ -60,7 +60,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler({ClientEmailNotUniqueException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public ErrorResponseDto handleClientNameNotUniqueException(Exception exception){
+  public ErrorResponseDto handleClientNameNotUniqueException(Exception exception) {
 
     String message = "Error: Client name is already taken!";
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
@@ -68,7 +68,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler({PositionNotFoundException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public ErrorResponseDto handleNoPositionsFoundException(Exception exception){
+  public ErrorResponseDto handleNoPositionsFoundException(Exception exception) {
 
     String message = "Error: there are no positions with the given parameters!";
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
@@ -76,7 +76,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler({InvalidPositionIdException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public ErrorResponseDto handleNoPositionsFoundByIdException(Exception exception){
+  public ErrorResponseDto handleNoPositionsFoundByIdException(Exception exception) {
 
     String message = "Error: there are no positions with the provided Id!";
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);

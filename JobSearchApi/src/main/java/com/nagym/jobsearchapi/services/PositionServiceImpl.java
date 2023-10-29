@@ -1,7 +1,6 @@
 package com.nagym.jobsearchapi.services;
 
 import com.nagym.jobsearchapi.dtos.GetPositionFromDatabaseDto;
-import com.nagym.jobsearchapi.exceptions.InvalidClientEmailException;
 import com.nagym.jobsearchapi.exceptions.InvalidPositionIdException;
 import com.nagym.jobsearchapi.models.ClientModel;
 import com.nagym.jobsearchapi.models.PositionModel;
@@ -31,14 +30,15 @@ public class PositionServiceImpl implements PositionService {
   }
 
   public PositionModel findPositionFromDatabase(Long id) throws InvalidPositionIdException {
-    if(!positionRepository.existsById(id)){
+    if (!positionRepository.existsById(id)) {
       throw new InvalidPositionIdException();
     }
     return positionRepository.findById(id).get();
   }
 
-  protected void setURLforPositionModel(PositionModel positionModelWithId){
-    positionModelWithId.setPositionURL("http://localhost:8080/positions/" + positionModelWithId.getId());
+  protected void setURLforPositionModel(PositionModel positionModelWithId) {
+    positionModelWithId.setPositionURL(
+        "http://localhost:8080/positions/" + positionModelWithId.getId());
   }
 
 

@@ -1,5 +1,5 @@
 package com.nagym.jobsearchapi.exceptions;
 
-public class PositionNotFoundException extends RuntimeException{
+public class PositionNotFoundException extends RuntimeException {
 
 }

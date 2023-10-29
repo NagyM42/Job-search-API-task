@@ -35,7 +35,7 @@ public class PositionModel {
     this.positionURL = positionURL;
   }
 
-  public PositionModel(PositionRegisterDto positionRegisterDto){
+  public PositionModel(PositionRegisterDto positionRegisterDto) {
     this.positionName = positionRegisterDto.getPositionDescription();
     this.positionGeographicalPosition = positionRegisterDto.getPositionLocation();
   }

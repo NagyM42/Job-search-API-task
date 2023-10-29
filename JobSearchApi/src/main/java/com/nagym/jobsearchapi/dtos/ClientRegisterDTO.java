@@ -1,6 +1,7 @@
 package com.nagym.jobsearchapi.dtos;
 
 public class ClientRegisterDTO {
+
   private String clientName;
   private String email;
 

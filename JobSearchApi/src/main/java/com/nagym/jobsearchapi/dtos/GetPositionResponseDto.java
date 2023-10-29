@@ -27,6 +27,7 @@ public class GetPositionResponseDto {
       List<GetPositionFromDatabaseDto> getPositionFromDatabaseDtoList) {
     this.getPositionFromDatabaseDtoList = getPositionFromDatabaseDtoList;
   }
+
   @JsonProperty("Positions from Muse database")
   public List<GetPositionFromMuseDto> getGetPositionFromMuseDtoList() {
     return getPositionFromMuseDtoList;

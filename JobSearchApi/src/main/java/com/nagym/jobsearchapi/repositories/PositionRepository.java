@@ -7,7 +7,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PositionRepository extends CrudRepository<PositionModel,Long> {
-  Optional<List<PositionModel>> findAllByPositionGeographicalPositionContainingAndPositionNameContaining(String location,String name);
-  boolean existsByPositionGeographicalPositionContainingAndPositionNameContaining(String location,String name);
+public interface PositionRepository extends CrudRepository<PositionModel, Long> {
+
+  Optional<List<PositionModel>> findAllByPositionGeographicalPositionContainingAndPositionNameContaining(
+      String location, String name);
+
+  boolean existsByPositionGeographicalPositionContainingAndPositionNameContaining(String location,
+      String name);
 }

@@ -1,20 +1,21 @@
 package com.nagym.jobsearchapi.feignDTO;
 
 public class JobCategory {
-    private String name;
 
-    public JobCategory() {
-    }
+  private String name;
 
-    public JobCategory(String name) {
-        this.name = name;
-    }
+  public JobCategory() {
+  }
 
-    public String getName() {
-        return name;
-    }
+  public JobCategory(String name) {
+    this.name = name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 }

@@ -1,9 +1,8 @@
 package com.nagym.jobsearchapi.feignDTO;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class Root  {
+public class Root {
 
   public int page;
   public int page_count;

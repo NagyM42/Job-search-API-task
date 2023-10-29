@@ -13,6 +13,7 @@ public class GetPositionFromMuseDto {
 
   public GetPositionFromMuseDto() {
   }
+
   public GetPositionFromMuseDto(String positionName, List<String> positionLocations,
       String positionURL) {
     this.positionName = positionName;
@@ -21,12 +22,13 @@ public class GetPositionFromMuseDto {
   }
 
 
-  public GetPositionFromMuseDto(JobOffer jobOffer){
+  public GetPositionFromMuseDto(JobOffer jobOffer) {
     this.positionName = jobOffer.getName();
     this.positionLocations = jobOffer.getLocations().stream().map(JobLocation::getName).collect(
         Collectors.toList());
     this.positionURL = jobOffer.getRefs().getLanding_page();
   }
+
   public String getPositionName() {
     return positionName;
   }

@@ -10,22 +10,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class JobService {
 
-    private final JobClient jobClient;
+  private final JobClient jobClient;
 
-    @Autowired
-    public JobService(JobClient jobClient) {
-        this.jobClient = jobClient;
-    }
+  @Autowired
+  public JobService(JobClient jobClient) {
+    this.jobClient = jobClient;
+  }
 
-    protected Root getJobs(JobSearchCriteria criteria) {
-        return jobClient.getOffers(criteria.getPage(), criteria.getCategoryName(),criteria.getLocationName());
-    }
+  protected Root getJobs(JobSearchCriteria criteria) {
+    return jobClient.getOffers(criteria.getPage(), criteria.getCategoryName(),
+        criteria.getLocationName());
+  }
 
-    protected List<GetPositionFromMuseDto> extractPositionsFromMuse(Root root){
-        return root.getResults().stream().map(GetPositionFromMuseDto::new).toList();
-    }
+  protected List<GetPositionFromMuseDto> extractPositionsFromMuse(Root root) {
+    return root.getResults().stream().map(GetPositionFromMuseDto::new).toList();
+  }
 
-    public List<GetPositionFromMuseDto> getPositionsFromMuse(JobSearchCriteria criteria){
-        return extractPositionsFromMuse(getJobs(criteria));
-    }
+  public List<GetPositionFromMuseDto> getPositionsFromMuse(JobSearchCriteria criteria) {
+    return extractPositionsFromMuse(getJobs(criteria));
+  }
 }

@@ -25,7 +25,8 @@ public class NewClientController {
   }
 
   @PostMapping({("/clients")})
-  public ResponseEntity<ClientResponseDTO> clientRegistration(@RequestBody ClientRegisterDTO registerDTO){
+  public ResponseEntity<ClientResponseDTO> clientRegistration(
+      @RequestBody ClientRegisterDTO registerDTO) {
 
     validatorService.clientEmailUniquenessValidation(registerDTO.getEmail());
     validatorService.clientNameValidation(registerDTO.getClientName());

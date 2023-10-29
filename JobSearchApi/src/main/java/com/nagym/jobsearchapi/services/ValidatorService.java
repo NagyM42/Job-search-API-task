@@ -24,20 +24,23 @@ public class ValidatorService {
 
   public void clientNameValidation(String clientName) throws InvalidClientNameLengthException {
 
-    if(clientName.length() > 100){
-      throw new InvalidClientNameLengthException("Invalid name: Client name extends 100 characters!");
+    if (clientName.length() > 100) {
+      throw new InvalidClientNameLengthException(
+          "Invalid name: Client name extends 100 characters!");
     }
   }
 
-  public void positionNameLengthValidation(String postName) throws InvalidPositionNameLegthException {
+  public void positionNameLengthValidation(String postName)
+      throws InvalidPositionNameLegthException {
 
-    if(postName.length() > 50){
+    if (postName.length() > 50) {
       throw new InvalidPositionNameLegthException();
     }
   }
 
-  public void positionLocationLengthValidation(String postLocation) throws InvalidPositionLocationLengthException{
-    if(postLocation.length() > 50){
+  public void positionLocationLengthValidation(String postLocation)
+      throws InvalidPositionLocationLengthException {
+    if (postLocation.length() > 50) {
       throw new InvalidPositionLocationLengthException();
     }
   }
@@ -47,20 +50,21 @@ public class ValidatorService {
     String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
         + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
-    if (!Pattern.compile(regexPattern).matcher(clientEmail).matches()){
+    if (!Pattern.compile(regexPattern).matcher(clientEmail).matches()) {
       throw new InvalidClientEmailException();
     }
   }
 
-  public void clientEmailUniquenessValidation(String clientEmail) throws ClientEmailNotUniqueException {
-    if (clientRepository.existsByClientEmail(clientEmail)){
+  public void clientEmailUniquenessValidation(String clientEmail)
+      throws ClientEmailNotUniqueException {
+    if (clientRepository.existsByClientEmail(clientEmail)) {
       throw new ClientEmailNotUniqueException();
     }
   }
 
-  public void apiKeyValidation(UUID clientId) throws InvalidApiKeyException{
+  public void apiKeyValidation(UUID clientId) throws InvalidApiKeyException {
 
-    if(!clientRepository.existsById(clientId)){
+    if (!clientRepository.existsById(clientId)) {
       throw new InvalidApiKeyException();
     }
   }

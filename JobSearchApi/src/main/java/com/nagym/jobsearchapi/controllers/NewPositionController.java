@@ -5,7 +5,6 @@ import com.nagym.jobsearchapi.dtos.PositionResponseDto;
 import com.nagym.jobsearchapi.models.ClientModel;
 import com.nagym.jobsearchapi.models.PositionModel;
 import com.nagym.jobsearchapi.services.ClientServiceImpl;
-import com.nagym.jobsearchapi.services.PositionService;
 import com.nagym.jobsearchapi.services.PositionServiceImpl;
 import com.nagym.jobsearchapi.services.ValidatorService;
 import org.springframework.beans.factory.annotation.Autowired;

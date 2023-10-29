@@ -3,6 +3,7 @@ package com.nagym.jobsearchapi.dtos;
 import com.nagym.jobsearchapi.models.PositionModel;
 
 public class GetPositionFromDatabaseDto {
+
   private String positionName;
   private String positionLocation;
   private String positionURL;
@@ -17,7 +18,7 @@ public class GetPositionFromDatabaseDto {
     this.positionURL = positionURL;
   }
 
-  public GetPositionFromDatabaseDto(PositionModel positionModel){
+  public GetPositionFromDatabaseDto(PositionModel positionModel) {
     this.positionName = positionModel.getPositionName();
     this.positionLocation = positionModel.getPositionGeographicalPosition();
     this.positionURL = positionModel.getPositionURL();

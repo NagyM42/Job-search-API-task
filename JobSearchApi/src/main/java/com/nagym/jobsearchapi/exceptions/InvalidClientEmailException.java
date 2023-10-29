@@ -1,4 +1,5 @@
 package com.nagym.jobsearchapi.exceptions;
 
-public class InvalidClientEmailException extends RuntimeException{
+public class InvalidClientEmailException extends RuntimeException {
+
 }

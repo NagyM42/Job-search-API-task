@@ -15,11 +15,12 @@ public class ClientServiceImpl implements ClientService {
   public ClientServiceImpl(ClientRepository clientRepository) {
     this.clientRepository = clientRepository;
   }
-  public ClientModel saveClient(ClientModel clientModel){
+
+  public ClientModel saveClient(ClientModel clientModel) {
     return clientRepository.save(clientModel);
   }
 
-  public ClientModel getClientById(UUID clientID){
+  public ClientModel getClientById(UUID clientID) {
     return clientRepository.findById(clientID).get();
   }
 

@@ -8,8 +8,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 public class JobSearchApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(JobSearchApiApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(JobSearchApiApplication.class, args);
+  }
 
 }

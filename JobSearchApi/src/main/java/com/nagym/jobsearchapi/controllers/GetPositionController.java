@@ -5,7 +5,6 @@ import com.nagym.jobsearchapi.dtos.GetPositionFromDatabaseDto;
 import com.nagym.jobsearchapi.dtos.GetPositionFromMuseDto;
 import com.nagym.jobsearchapi.dtos.GetPositionResponseDto;
 import com.nagym.jobsearchapi.feignDTO.JobSearchCriteria;
-import com.nagym.jobsearchapi.feignDTO.Root;
 import com.nagym.jobsearchapi.services.JobService;
 import com.nagym.jobsearchapi.services.PositionRetrieverService;
 import com.nagym.jobsearchapi.services.PositionServiceImpl;
@@ -23,7 +22,7 @@ public class GetPositionController {
 
   PositionServiceImpl positionService;
   ValidatorService validatorService;
-PositionRetrieverService positionRetrieverService;
+  PositionRetrieverService positionRetrieverService;
   JobService jobService;
 
   @Autowired
@@ -49,14 +48,16 @@ PositionRetrieverService positionRetrieverService;
         getPositionDto.getPositionLocation());
 
     JobSearchCriteria searchCriteria = new JobSearchCriteria(getPositionDto);
-    List<GetPositionFromMuseDto> listOfPositionsInMuse = jobService.getPositionsFromMuse(searchCriteria);
+    List<GetPositionFromMuseDto> listOfPositionsInMuse = jobService.getPositionsFromMuse(
+        searchCriteria);
 
-    return positionRetrieverService.responseCreator(listofPositionsInDataBase, listOfPositionsInMuse);
+    return positionRetrieverService.responseCreator(listofPositionsInDataBase,
+        listOfPositionsInMuse);
   }
 
   @GetMapping({"/positions/{id}"})
-  public GetPositionFromDatabaseDto getSinglePosition(@PathVariable(name = "id") Long id){
-   return new GetPositionFromDatabaseDto(positionService.findPositionFromDatabase(id));
+  public GetPositionFromDatabaseDto getSinglePosition(@PathVariable(name = "id") Long id) {
+    return new GetPositionFromDatabaseDto(positionService.findPositionFromDatabase(id));
   }
 
 }
