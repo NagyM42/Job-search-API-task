@@ -7,7 +7,7 @@ import com.nagym.jobsearchapi.dtos.GetPositionResponseDto;
 import com.nagym.jobsearchapi.feignDTO.JobSearchCriteria;
 import com.nagym.jobsearchapi.services.JobService;
 import com.nagym.jobsearchapi.services.PositionRetrieverService;
-import com.nagym.jobsearchapi.services.PositionServiceImpl;
+import com.nagym.jobsearchapi.services.PositionService;
 import com.nagym.jobsearchapi.services.ValidatorService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GetPositionController {
 
-  PositionServiceImpl positionService;
-  ValidatorService validatorService;
+  PositionService positionService;
+  ValidatorService validatorServiceImpl;
   PositionRetrieverService positionRetrieverService;
   JobService jobService;
 
   @Autowired
-  public GetPositionController(PositionServiceImpl positionService,
-      ValidatorService validatorService,
+  public GetPositionController(PositionService positionService,
+      ValidatorService validatorServiceImpl,
       PositionRetrieverService positionRetrieverService, JobService jobService) {
     this.positionService = positionService;
-    this.validatorService = validatorService;
+    this.validatorServiceImpl = validatorServiceImpl;
     this.positionRetrieverService = positionRetrieverService;
     this.jobService = jobService;
   }
@@ -39,9 +39,9 @@ public class GetPositionController {
   public ResponseEntity<GetPositionResponseDto> getPositions(
       @RequestBody GetPositionDto getPositionDto) {
 
-    validatorService.apiKeyValidation(getPositionDto.getUuid());
-    validatorService.positionNameLengthValidation(getPositionDto.getPositionDescription());
-    validatorService.positionNameLengthValidation(getPositionDto.getPositionLocation());
+    validatorServiceImpl.apiKeyValidation(getPositionDto.getUuid());
+    validatorServiceImpl.positionNameLengthValidation(getPositionDto.getPositionDescription());
+    validatorServiceImpl.positionNameLengthValidation(getPositionDto.getPositionLocation());
 
     List<GetPositionFromDatabaseDto> listofPositionsInDataBase = positionService.summarizePositionsFromDatabase(
         getPositionDto.getPositionDescription(),
