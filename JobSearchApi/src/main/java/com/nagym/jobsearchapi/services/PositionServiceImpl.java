@@ -1,7 +1,6 @@
 package com.nagym.jobsearchapi.services;
 
-import com.nagym.jobsearchapi.dtos.GetPositionResponseDto;
-import com.nagym.jobsearchapi.exceptions.PositionNotFoundException;
+import com.nagym.jobsearchapi.dtos.GetPositionFromDatabaseDto;
 import com.nagym.jobsearchapi.models.ClientModel;
 import com.nagym.jobsearchapi.models.PositionModel;
 import com.nagym.jobsearchapi.repositories.PositionRepository;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,23 +36,23 @@ public class PositionServiceImpl implements PositionService {
     return savePosition(positionWithId);
   }
 
-  private Optional<List<PositionModel>> searchPositions(String positionName,
+  protected Optional<List<PositionModel>> searchPositions(String positionName,
       String positionLocation) {
     return positionRepository.findAllByPositionGeographicalPositionContainingAndPositionNameContaining(
         positionLocation, positionName);
   }
 
-  private boolean positionFound(String positionName, String positionLocation) {
+  protected boolean positionFound(String positionName, String positionLocation) {
     return positionRepository.existsByPositionGeographicalPositionContainingAndPositionNameContaining(
         positionLocation, positionName);
   }
 
-  public List<GetPositionResponseDto> summarizePositionsFromDatabase(String positionName,
+  public List<GetPositionFromDatabaseDto> summarizePositionsFromDatabase(String positionName,
       String positionLocation) {
 
     if (positionFound(positionName, positionLocation)) {
       return searchPositions(positionName, positionLocation).get().stream().map(
-          GetPositionResponseDto::new).collect(
+          GetPositionFromDatabaseDto::new).collect(
           Collectors.toList());
     } else {
       return new ArrayList<>();

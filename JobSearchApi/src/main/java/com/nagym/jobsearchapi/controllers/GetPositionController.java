@@ -1,10 +1,13 @@
 package com.nagym.jobsearchapi.controllers;
 
 import com.nagym.jobsearchapi.dtos.GetPositionDto;
+import com.nagym.jobsearchapi.dtos.GetPositionFromDatabaseDto;
+import com.nagym.jobsearchapi.dtos.GetPositionFromMuseDto;
 import com.nagym.jobsearchapi.dtos.GetPositionResponseDto;
 import com.nagym.jobsearchapi.feignDTO.JobSearchCriteria;
 import com.nagym.jobsearchapi.feignDTO.Root;
 import com.nagym.jobsearchapi.services.JobService;
+import com.nagym.jobsearchapi.services.PositionRetrieverService;
 import com.nagym.jobsearchapi.services.PositionServiceImpl;
 import com.nagym.jobsearchapi.services.ValidatorService;
 import java.util.List;
@@ -19,47 +22,49 @@ public class GetPositionController {
 
   PositionServiceImpl positionService;
   ValidatorService validatorService;
-
+PositionRetrieverService positionRetrieverService;
   JobService jobService;
 
   @Autowired
   public GetPositionController(PositionServiceImpl positionService,
       ValidatorService validatorService,
-      JobService jobService) {
+      PositionRetrieverService positionRetrieverService, JobService jobService) {
     this.positionService = positionService;
     this.validatorService = validatorService;
+    this.positionRetrieverService = positionRetrieverService;
     this.jobService = jobService;
   }
 
   @GetMapping({("/positions")})
-  public ResponseEntity<List<GetPositionResponseDto>> positionSearch(
+  public ResponseEntity<GetPositionResponseDto> getPositions(
       @RequestBody GetPositionDto getPositionDto) {
 
     validatorService.apiKeyValidation(getPositionDto.getUuid());
     validatorService.positionNameLengthValidation(getPositionDto.getPositionDescription());
     validatorService.positionNameLengthValidation(getPositionDto.getPositionLocation());
 
-    List<GetPositionResponseDto> listofPositionsInDataBase = positionService.summarizePositionsFromDatabase(
+    List<GetPositionFromDatabaseDto> listofPositionsInDataBase = positionService.summarizePositionsFromDatabase(
         getPositionDto.getPositionDescription(),
         getPositionDto.getPositionLocation());
 
-    return positionService.responseCreator(listofPositionsInDataBase);
+    JobSearchCriteria searchCriteria = new JobSearchCriteria(getPositionDto);
+    List<GetPositionFromMuseDto> listOfPositionsInMuse = jobService.getPositionsFromMuse(searchCriteria);
+
+    return positionRetrieverService.responseCreator(listofPositionsInDataBase, listOfPositionsInMuse);
   }
 
-
-  @GetMapping({("/positions1")})
-  public Root positionSearch2() {
-
-    JobSearchCriteria jobSearchCriteria = new JobSearchCriteria("Product","London, United Kingdom",0);
-
-    Root result = jobService.getJobs(jobSearchCriteria);
-    if(result == null){
-      return new Root();
-    }
-
-    return result;
-  }
-
+//  @GetMapping({("/positions1")})
+//  public Root positionSearch2() {
+//
+//    JobSearchCriteria jobSearchCriteria = new JobSearchCriteria("Product","London, United Kingdom",0);
+//
+//    Root result = jobService.getJobs(jobSearchCriteria);
+//    if(result == null){
+//      return new Root();
+//    }
+//
+//    return result;
+//  }
 
 
 }

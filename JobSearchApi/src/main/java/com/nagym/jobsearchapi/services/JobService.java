@@ -1,12 +1,9 @@
 package com.nagym.jobsearchapi.services;
 
-import com.nagym.jobsearchapi.dtos.GetPositionFromMuse;
-import com.nagym.jobsearchapi.feignDTO.JobOffer;
+import com.nagym.jobsearchapi.dtos.GetPositionFromMuseDto;
 import com.nagym.jobsearchapi.feignDTO.JobSearchCriteria;
 import com.nagym.jobsearchapi.feignDTO.Root;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,15 +17,15 @@ public class JobService {
         this.jobClient = jobClient;
     }
 
-    public Root getJobs(JobSearchCriteria criteria) {
+    protected Root getJobs(JobSearchCriteria criteria) {
         return jobClient.getOffers(criteria.getPage(), criteria.getCategoryName(),criteria.getLocationName());
     }
 
-    public List<GetPositionFromMuse> extractPositionsFromMuse(Root root){
-        return root.getResults().stream().map(GetPositionFromMuse::new).toList();
+    protected List<GetPositionFromMuseDto> extractPositionsFromMuse(Root root){
+        return root.getResults().stream().map(GetPositionFromMuseDto::new).toList();
     }
 
-    public List<GetPositionFromMuse> getPositionsFromMuse(JobSearchCriteria criteria){
+    public List<GetPositionFromMuseDto> getPositionsFromMuse(JobSearchCriteria criteria){
         return extractPositionsFromMuse(getJobs(criteria));
     }
 }

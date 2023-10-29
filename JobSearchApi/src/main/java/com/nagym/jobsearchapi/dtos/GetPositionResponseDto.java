@@ -1,49 +1,39 @@
 package com.nagym.jobsearchapi.dtos;
 
-import com.nagym.jobsearchapi.models.PositionModel;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 public class GetPositionResponseDto {
-  private String positionName;
-  private String positionLocation;
-  private String positionURL;
+
+  private List<GetPositionFromDatabaseDto> getPositionFromDatabaseDtoList;
+  private List<GetPositionFromMuseDto> getPositionFromMuseDtoList;
 
   public GetPositionResponseDto() {
   }
 
-  public GetPositionResponseDto(String positionName, String positionLocation,
-      String positionURL) {
-    this.positionName = positionName;
-    this.positionLocation = positionLocation;
-    this.positionURL = positionURL;
+  public GetPositionResponseDto(List<GetPositionFromDatabaseDto> getPositionFromDatabaseDtoList,
+      List<GetPositionFromMuseDto> getPositionFromMuseDtoList) {
+    this.getPositionFromDatabaseDtoList = getPositionFromDatabaseDtoList;
+    this.getPositionFromMuseDtoList = getPositionFromMuseDtoList;
   }
 
-  public GetPositionResponseDto(PositionModel positionModel){
-    this.positionName = positionModel.getPositionName();
-    this.positionLocation = positionModel.getPositionGeographicalPosition();
-    this.positionURL = positionModel.getPositionURL();
+
+  @JsonProperty("Positions from the Database")
+  public List<GetPositionFromDatabaseDto> getGetPositionDatabaseDtoList() {
+    return getPositionFromDatabaseDtoList;
   }
 
-  public String getPositionName() {
-    return positionName;
+  public void setGetPositionDatabaseDtoList(
+      List<GetPositionFromDatabaseDto> getPositionFromDatabaseDtoList) {
+    this.getPositionFromDatabaseDtoList = getPositionFromDatabaseDtoList;
+  }
+  @JsonProperty("Positions from Muse database")
+  public List<GetPositionFromMuseDto> getGetPositionFromMuseDtoList() {
+    return getPositionFromMuseDtoList;
   }
 
-  public void setPositionName(String positionName) {
-    this.positionName = positionName;
-  }
-
-  public String getPositionLocation() {
-    return positionLocation;
-  }
-
-  public void setPositionLocation(String positionLocation) {
-    this.positionLocation = positionLocation;
-  }
-
-  public String getPositionURL() {
-    return positionURL;
-  }
-
-  public void setPositionURL(String positionURL) {
-    this.positionURL = positionURL;
+  public void setGetPositionFromMuseDtoList(
+      List<GetPositionFromMuseDto> getPositionFromMuseDtoList) {
+    this.getPositionFromMuseDtoList = getPositionFromMuseDtoList;
   }
 }

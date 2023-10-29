@@ -1,5 +1,6 @@
 package com.nagym.jobsearchapi.feignDTO;
 
+import com.nagym.jobsearchapi.dtos.GetPositionDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +19,11 @@ public class JobSearchCriteria {
     public JobSearchCriteria(String categoryName, String locationName) {
         this.categoryName = categoryName;
         this.locationName = locationName;
+    }
+
+    public JobSearchCriteria(GetPositionDto getPositionDto) {
+        this.categoryName = getPositionDto.getPositionDescription();
+        this.locationName = getPositionDto.getPositionLocation();
     }
 
     public String getLocationName() {

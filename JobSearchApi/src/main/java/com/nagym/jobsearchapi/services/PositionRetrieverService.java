@@ -1,9 +1,9 @@
 package com.nagym.jobsearchapi.services;
 
+import com.nagym.jobsearchapi.dtos.GetPositionFromMuseDto;
+import com.nagym.jobsearchapi.dtos.GetPositionFromDatabaseDto;
 import com.nagym.jobsearchapi.dtos.GetPositionResponseDto;
 import com.nagym.jobsearchapi.exceptions.PositionNotFoundException;
-import com.nagym.jobsearchapi.feignDTO.JobSearchCriteria;
-import com.nagym.jobsearchapi.feignDTO.Root;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +19,11 @@ public class PositionRetrieverService {
     this.jobService = jobService;
   }
 
-  public ResponseEntity<List<GetPositionResponseDto>> responseCreator(List<GetPositionResponseDto> databaseList, List<>) throws PositionNotFoundException {
-
-    if(input.isEmpty()){
+  public ResponseEntity<GetPositionResponseDto> responseCreator(List<GetPositionFromDatabaseDto> databaseList, List<GetPositionFromMuseDto> museList) throws PositionNotFoundException {
+    if(databaseList.isEmpty() && museList.isEmpty()){
       throw new PositionNotFoundException();
     }
-    return ResponseEntity.ok(input);
+    GetPositionResponseDto clientResponse = new GetPositionResponseDto(databaseList, museList);
+    return ResponseEntity.ok(clientResponse);
   }
-
-
-
-
-
 }
