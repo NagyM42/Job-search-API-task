@@ -41,7 +41,6 @@ public class GlobalExceptionHandler {
     return new ErrorResponseDto(HttpStatus.BAD_REQUEST, message);
   }
 
-
   @ExceptionHandler({InvalidPositionLocationLengthException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ErrorResponseDto handlePositionLocationNameLengthException(Exception exception) {

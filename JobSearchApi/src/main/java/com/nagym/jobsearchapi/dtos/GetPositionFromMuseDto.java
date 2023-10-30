@@ -1,7 +1,7 @@
 package com.nagym.jobsearchapi.dtos;
 
-import com.nagym.jobsearchapi.feignDTO.JobLocation;
-import com.nagym.jobsearchapi.feignDTO.JobOffer;
+import com.nagym.jobsearchapi.feignclientmodels.JobLocation;
+import com.nagym.jobsearchapi.feignclientmodels.JobOffer;
 import java.util.List;
 import java.util.stream.Collectors;
 

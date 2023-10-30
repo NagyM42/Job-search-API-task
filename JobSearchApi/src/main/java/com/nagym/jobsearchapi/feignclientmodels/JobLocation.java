@@ -1,4 +1,4 @@
-package com.nagym.jobsearchapi.feignDTO;
+package com.nagym.jobsearchapi.feignclientmodels;
 
 public class JobLocation {
 

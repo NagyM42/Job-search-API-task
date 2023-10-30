@@ -1,8 +1,8 @@
 package com.nagym.jobsearchapi.services;
 
 import com.nagym.jobsearchapi.dtos.GetPositionFromMuseDto;
-import com.nagym.jobsearchapi.feignDTO.JobSearchCriteria;
-import com.nagym.jobsearchapi.feignDTO.Root;
+import com.nagym.jobsearchapi.feignclientmodels.JobSearchCriteria;
+import com.nagym.jobsearchapi.feignclientmodels.Root;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

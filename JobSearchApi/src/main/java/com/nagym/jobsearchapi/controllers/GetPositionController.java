@@ -4,7 +4,7 @@ import com.nagym.jobsearchapi.dtos.GetPositionDto;
 import com.nagym.jobsearchapi.dtos.GetPositionFromDatabaseDto;
 import com.nagym.jobsearchapi.dtos.GetPositionFromMuseDto;
 import com.nagym.jobsearchapi.dtos.GetPositionResponseDto;
-import com.nagym.jobsearchapi.feignDTO.JobSearchCriteria;
+import com.nagym.jobsearchapi.feignclientmodels.JobSearchCriteria;
 import com.nagym.jobsearchapi.services.JobService;
 import com.nagym.jobsearchapi.services.PositionRetrieverService;
 import com.nagym.jobsearchapi.services.PositionService;
